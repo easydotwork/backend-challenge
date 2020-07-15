@@ -6,7 +6,7 @@
 
 > Considere o seguinte cenário hipotético onde nosso cliente deseja desenvolver uma plataforma para coleta de dados corporativos de seus colaboradores a fim de criar uma base profissional dos envolvidos via preenchimento de um formulário que deve ser realizado através de uma collection do Postman ou página WEB (opcional).
 É de interesse do cliente que os colaboradores cadastrados na base recebam como resposta via Postman ou sejam redirecionados para uma página WEB (opcional) contendo suas credenciais de acesso logo após o cadastro realizado com sucesso para que seja possível realizar a edição de seus dados cadastrais em acessos futuros.
-Para esta aplicação nosso cliente exige uma infraestrutura serverless altamente escalável com baixo custo. Nosso cliente já utiliza serviços AWS e sugeriu o uso de AWS Lambda a fim de manter sua arquitetura dentro de um mesmo contexto de trabalho.
+Para esta aplicação consideramos um diferencial o uso de uma infraestrutura serverless com serviço AWS Lambda utilizando plugin Serverless Offline para simular o ambiente da Amazon, porém não é um requisito obrigatório sendo possível o desenvolvimento utilizando uma estrutura local monolítica em Node.js.
 
 
 ## Lista de requisitos técnicos
@@ -27,7 +27,7 @@ Para esta aplicação nosso cliente exige uma infraestrutura serverless altament
 
 ## Formulário de cadastro
 
-* Foto de perfil (Upload de imagem com resolução máxima de 250px de largura por 250px de altura)
+* Foto de perfil (Upload de imagem com resolução máxima de 250px de largura por 250px de altura) (Opcional)
 * Nome/Razão Social
 * CPF/CNPJ
 * Função/Cargo (Verificar dados pré-definidos)
