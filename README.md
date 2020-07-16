@@ -11,7 +11,7 @@ Para esta aplicação consideramos um diferencial o uso de uma infraestrutura se
 
 ## Lista de requisitos técnicos
 
-* A aplicação deve implementar um CRUD utilizando Node.js com framework Express.
+* A aplicação deve implementar um CRUD utilizando Node.js com framework Express ou Lambda (opcional).
 * Para utilização de recursos serverless da AWS recomendamos o uso de Serverless Framework com o plugin Serverless Offline para emular serviços como AWS Lambda.
 * O banco de dados utilizado deve ser relacional e os dados devem ser manipulados via ORM, de preferência utilizar o Sequelize.
 * O banco de dados possui informações pré-definidas pelo cliente que devem ser populadas através de arquivos seeders e a sua criação direcionada por arquivos migrations, a manipulação de dados diretamente na base para esta aplicação deve ser evitada.
