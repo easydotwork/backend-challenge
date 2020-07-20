@@ -1,78 +1,73 @@
-# Backend api para o app UInstantSolution
-> Start do backend (api) - Configurando o ambiente
-
-* npm init -y
-* kate package.json
-* npm install jose --save
-* npm install bcryptjs --save
-* npm install express --save
-* npm install sequelize --save
-* npm install sequelize-cli --save
-* npm install pg pg-hstore
-* sudo npm install -g serverless
-* npm install serverless-offline --save-dev
-* serverless create --template aws-nodejs --path challengecrudaws
+# Teste de Pré Seleção
+> O objetivo deste teste é avaliar o perfil técnico do candidato mostrando uma prévia dos desafios que podem ser enfrentados em situações do dia a dia. A fim de criar um cenário realista estamos disponibilizando este repositório para que você possa desenvolver o desafio proposto submetendo suas PRs para revisão de nossa equipe técnica.
 
 
-## Primeira fase 
+## Desafio
 
-### Implementando as calls da api (básica, sem o sequelize) utilizando design patterns, otimização de código e boas práticas
+> Considere o seguinte cenário hipotético onde nosso cliente deseja desenvolver uma plataforma para coleta de dados corporativos de seus colaboradores a fim de criar uma base profissional dos envolvidos via preenchimento de um formulário que deve ser realizado através de uma collection do Postman ou página WEB (opcional).
+É de interesse do cliente que os colaboradores cadastrados na base recebam como resposta via Postman ou sejam redirecionados para uma página WEB (opcional) contendo suas credenciais de acesso logo após o cadastro realizado com sucesso para que seja possível realizar a edição de seus dados cadastrais em acessos futuros.
+Para esta aplicação consideramos um diferencial o uso de uma infraestrutura serverless com serviço AWS Lambda utilizando plugin Serverless Offline para simular o ambiente da Amazon, porém não é um requisito obrigatório sendo possível o desenvolvimento utilizando uma estrutura local monolítica em Node.js.
 
-Foi implementada a estrutura inicial da API contendo as seguintes pastas / hierarquia:
-* Raiz em challengecrudaws
-    * ./controllers - controladores utilizados na API (implementação do consumo via rotas "proximo item"):
-        * ./docs - documentação de acesso as APIS via Postman
 
-        * ./users/auth - Formulário de primeiro acesso
-        * ./users/cad - Formulário de cadastro
-        * ./users/profile - Upload e optimização de imagens
+## Lista de requisitos técnicos
 
-* ./database - coniguração das credenciais no sequelize:
+* A aplicação deve implementar um CRUD utilizando Node.js com framework Express ou Lambda (opcional).
+* Para utilização de recursos serverless da AWS recomendamos o uso de Serverless Framework com o plugin Serverless Offline para emular serviços como AWS Lambda.
+* O banco de dados utilizado deve ser relacional e os dados devem ser manipulados via ORM, de preferência utilizar o Sequelize.
+* O banco de dados possui informações pré-definidas pelo cliente que devem ser populadas através de arquivos seeders e a sua criação direcionada por arquivos migrations, a manipulação de dados diretamente na base para esta aplicação deve ser evitada.
+* Dados sensíveis como IDs do banco de dados não devem trafegar de maneira exposta entre as requisições, para a proteção deste tipo de informação sugerimos o uso de padrão JSON Web Token para criptografar este tipo dado utilizando uma chave privada que deve ser armazenada no arquivo de ambiente da aplicação no servidor.
+* Os formulários de entrada devem ser criados via collection do Postman ou com um front-end WEB (opcional) utilizando JavaScript, jQuery, Angular, React ou outra plataforma que o candidato se sinta familiarizado.
 
-## Segunda fase
+## Formulário de Acesso
 
-### Configurando para o Sequelize
+* E-mail
+* Senha
+* Botão para realizar o primeiro cadastro
 
-* .sequelizerc com (config em ./database/config/db.js e migrations-path em ./database/migrations)
-* ./database/config/db - credenciais no sequelize:
 
-### Implementando os Models para o Sequelize
+## Formulário de cadastro
 
-* ./models/Users - Modelo da tabela usuários
-* ./models/Addresses - Modelo da tabela endereços
-* ./models/Positions - Modelo da tabela cargos
-* ./models/Contacts-main - Modelo da tabela contatos (telefones)
-* ./models/Contacts-social - Modelo da tabela contatos (redes sociais)
+* Foto de perfil (Upload de imagem com resolução máxima de 250px de largura por 250px de altura) (Opcional)
+* Nome/Razão Social
+* CPF/CNPJ
+* Função/Cargo (Verificar dados pré-definidos)
+* E-mail de acesso 
+* Endereços (Verificar dados pré-definidos)
+* Telefones (Verificar dados pré-definidos)
+* Redes sociais (Verificar dados pré-definidos)
 
-## Terceira fase 
 
-### Implementando o banco de dados relacional utilizando seeders e migrations via Sequelize
+## Dados pré-definidos
 
-> Aqui enfrentei um problema classíco no linux que utilizo aqui (Case Sensitive) quando defini as tables via Models na database porém solucionei rápidamente com o uso do atributo modelName 
+### Tipos de cargos
+* Programador front-end
+* Programador back-end
+* Designer
+* Gerente de projetos
 
-* cd challengecrudaws
-* npx sequelize db:create
-* npx sequelize migration:create --name=users
-* npx sequelize migration:create --name=addresses
-* npx sequelize migration:create --name=positions
-* npx sequelize migration:create --name=contacts-main
-* npx sequelize migration:create --name=contacts-social
-* npx sequelize db:migrate
+### Tipos de telefones
+* Fixo
+* Celular
+* WhatsApp
 
-## Quarta fase 
+### Tipos de redes sociais
+* Facebook
+* Instagram
+* LinkedIn
+* Pinterest
 
-### Implementando o cadastro
 
-* ./controllers/users/cad - implementação do CRUD de cadastro
+## Instalação
 
-### Implementando o acesso ao cadastro
+>Utilize este espaço para nos instruir de forma intuitiva a instalar recursos e executar procedimentos necessários para que sua aplicação seja reproduzida com sucesso.
 
-* ./controllers/users/auth - implementação do acesso ao cadastro (com registro e redirecionamento para página de credenciais)
+## Casos de uso
 
-### Implementando o upload e otimização de imagens
+>Utilize este espaço para nos apresentar sua aplicação, mostre casos de uso reais que possam nos ajudar a simular cenários e obter a melhor experiência com seu produto.
 
-* ./controllers/users/profile - implementação do sistema de uploads e otimização de imagens
+## Instruções de contribuição
 
-### Realizei os testes de consulta via Postman
-
-> Ver documentação (exemplos) em http(s)://url:8191/
+1. Realize um fork deste repositório (<https://github.com/easydotwork/backend-challenge/fork>)
+2. Desenvolva sua solução no seu projeto criado a partir do fork
+3. Assim que finalizar crie um Pull Request do seu repositório para este aqui como forma de entrega
+(Obs: Descreva como criou a solução na descrição do PR)
