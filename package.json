@@ -1,0 +1,29 @@
+{
+  "name": "tempprj",
+  "version": "1.0.0",
+  "description": "Backend api para o app UInstantSolution",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon challengecrudaws/app.js"
+  },
+  "keywords": [
+    "backend",
+    "api",
+    "app",
+    "UInstantSolution"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "jose": "^1.27.2",
+    "pg": "^8.3.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.3",
+    "sequelize-cli": "^6.2.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^6.4.0"
+  }
+}
