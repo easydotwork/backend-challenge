@@ -1,0 +1,37 @@
+{
+  "name": "challenge-kimdelevati",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "consign": "^0.1.6",
+    "cors": "^2.8.5",
+    "dotenv-safe": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "generate-password": "^1.5.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.4",
+    "serverless-http": "^2.5.0",
+    "serverless-offline": "^6.7.0"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kimdelevati/backend-challenge.git"
+  },
+  "author": "kimdelevati",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kimdelevati/backend-challenge/issues"
+  },
+  "homepage": "https://github.com/kimdelevati/backend-challenge#readme"
+}
