@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "aeb6d8d1-1f7f-4769-a7a7-017d18b19cac",
+		"name": "Challenge collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"kim delev\",\r\n    \"email\": \"kim.delevati@teste.com\",\r\n    \"document\": \"01736464094\",\r\n    \"jobId\" : 2,\r\n    \"addresses\": [\r\n        {\r\n            \"addressTypeId\" : \"1\",\r\n            \"address\" : \"Rua sansao alves dos santos\"\r\n        }        \r\n    ],\r\n    \"phonenumbers\": [\r\n        {\r\n            \"phoneTypeId\" : \"1\",\r\n            \"phoneNumber\" : \"51998570417\"\r\n        }        \r\n    ],\r\n    \"socialnetworks\": [\r\n        {\r\n            \"socialNetworkTypeId\" : \"1\",\r\n            \"url\" : \"fb.com/kimdelevati\"\r\n        }        \r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/dev/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"kim.delevati@teste.com\",\r\n    \"password\": \"h4AlUZQ1iW\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/dev/auth/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"auth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletes user",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTk4Njc3MjY5LCJleHAiOjE1OTg2ODA4Njl9.q4E3zUxznboofe1Bv0T-epKVtq_IlBKkuIpVN-X-Qpg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/dev/users/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dev",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

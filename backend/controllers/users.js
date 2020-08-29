@@ -80,7 +80,7 @@ module.exports = app => {
         //res.status(200).send({message: `user updated`});
     });
 
-    //deletes user
+    //deletes user (destroy disabled for now)
     app.delete('/users/:id', authMiddleware, async (req, res) => {
 
         const id = req.params.id;
