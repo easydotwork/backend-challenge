@@ -7,28 +7,40 @@ const authMiddleware = require('../middleware/auth-middleware')
 module.exports = app => {
 
     //gets all users
-    app.get('/users', async (req, res) => {
+   /*app.get('/users', async (req, res) => {
         const users = await models.User.findAll({ attributes: ['name', 'email'] });
         res.json(users);
-    });
+    });*/
 
-    //gets a single user - will remove some of the fields
-    app.get('/users/:id', authMiddleware, async (req, res) => {
+    //gets the current validated user
+    app.get('/users', authMiddleware, async (req, res) => {
 
-        const id = req.params.id;
+        const id = req.jwtUserId;
 
-        if(req.jwtUserId == id) {
+        const user = await models.User.findOne({
+            where: { id: id },
+            attributes: ['name', 'email', 'document', 'profilePictureUrl', 'jobId'],
+            include: [
+                //models.JobType,
+                {
+                    model: models.User_Addresses,
+                    attributes: ['addressTypeId', 'address']
+                },
+                {
+                    model: models.User_Phones,
+                    attributes: ['phoneTypeId', 'phoneNumber']
+                },
+                {
+                    model: models.User_SocialNetworks,
+                    attributes: ['socialNetworkTypeId', 'url']
+                }
+            ],
+        });
 
-            const user = await models.User.findByPk(id);
-            if (user === null) {
-              res.status(400).send({message: `User not found`});
-            } else {
-              res.json(user);
-            }
-
+        if (user === null) {
+          res.status(404).send({message: `User not found`});
         } else {
-
-            return res.status(500).json({ message: 'user mismatch.' });
+          res.json(user);
         }
 
     });
@@ -36,68 +48,72 @@ module.exports = app => {
     //creates a new user
     app.post('/users', userValidationRules(), validate, async (req, res) => {
 
-        var pwd = await generator.generate({ length: 10, numbers: true });
-
-        const user = await models.User.create({
-            name: req.body.name,
-            email: req.body.email,
-            document: req.body.document,
-            jobId: req.body.jobId,
-            password: pwd,
+        var user = await models.User.findOne({
+            where: { email: req.body.email }
         });
 
-        //const user = await models.User.findByPk(2);
-
         if (user !== null) {
+            res.status(409).send({message: `User already exists`});
 
-            req.body.addresses.forEach(address => {
-               models.User_Addresses.create({userId : user.id, ...address});
-            })
+        } else {
 
-            req.body.phonenumbers.forEach(phonenumber => {
-                models.User_Phones.create({userId : user.id, ...phonenumber});
-            })
+            var pwd = await generator.generate({ length: 10, numbers: true });
 
-            req.body.socialnetworks.forEach(socialnetwork => {
-                models.User_SocialNetworks.create({userId : user.id, ...socialnetwork});
-            })
+            user = await models.User.create({
+                name: req.body.name,
+                email: req.body.email,
+                document: req.body.document,
+                jobId: req.body.jobId,
+                password: pwd,
+            });
+
+            //const user = await models.User.findByPk(2);
+
+            if (user !== null) {
+
+                req.body.addresses.forEach(address => {
+                   models.User_Addresses.create({userId : user.id, ...address});
+                })
+
+                req.body.phonenumbers.forEach(phonenumber => {
+                    models.User_Phones.create({userId : user.id, ...phonenumber});
+                })
+
+                req.body.socialnetworks.forEach(socialnetwork => {
+                    models.User_SocialNetworks.create({userId : user.id, ...socialnetwork});
+                })
+
+            }
+
+            res.json({
+                message: "User created!",
+                credentials: {
+                    email: user.email,
+                    password: pwd,
+                }
+             });
 
         }
-
-        res.json({
-            message: "User created!",
-            credentials: {
-                email: user.email,
-                password: pwd,
-            }
-         });
 
     });
 
     //updates user -- in progress
-    app.put('/users/:id', (req, res) => {
+    app.put('/users/', authMiddleware, async (req, res) => {
         const id = req.params.id;
         //res.status(200).send({message: `user updated`});
     });
 
-    //deletes user (destroy disabled for now)
-    app.delete('/users/:id', authMiddleware, async (req, res) => {
+    //deletes the current validated user
+    app.delete('/users', authMiddleware, async (req, res) => {
 
-        const id = req.params.id;
+        const id = req.jwtUserId
 
-        if(req.jwtUserId == id) {
-
-            const user = await models.User.findByPk(id);
-            if (user === null) {
-              res.status(400).send({message: `User not found`});
-            } else {
-              //await user.destroy();
-                res.status(200).send({message: `User deleted`});
-            }
-
+        const user = await models.User.findByPk(id);
+        if (user === null) {
+          res.status(404).send({message: `User not found`});
         } else {
-
-            return res.status(500).json({ message: 'Unauthorized' });
+          //await user.destroy();
+            res.status(200).send({message: `User deleted`});
         }
 
     });

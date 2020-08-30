@@ -13,10 +13,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      //User.hasMany(models.User_Addresses);
-      //User.hasMany(models.User_Phones);
-      //User.hasMany(models.User_SocialNetworks);
-      //User.belongsTo(models.JobType, {foreignKey: 'jobId', as: 'userJob'});
+      User.hasMany(models.User_Addresses);
+      User.hasMany(models.User_Phones);
+      User.hasMany(models.User_SocialNetworks);
+      User.belongsTo(models.JobType, {foreignKey: 'jobId'});
     }
   };
   User.init({
