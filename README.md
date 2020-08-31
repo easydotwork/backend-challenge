@@ -31,7 +31,7 @@ Para esta aplicação consideramos um diferencial o uso de uma infraestrutura se
 * Nome/Razão Social
 * CPF/CNPJ
 * Função/Cargo (Verificar dados pré-definidos)
-* E-mail de acesso 
+* E-mail de acesso
 * Endereços (Verificar dados pré-definidos)
 * Telefones (Verificar dados pré-definidos)
 * Redes sociais (Verificar dados pré-definidos)
@@ -59,7 +59,28 @@ Para esta aplicação consideramos um diferencial o uso de uma infraestrutura se
 
 ## Instalação
 
->Utilize este espaço para nos instruir de forma intuitiva a instalar recursos e executar procedimentos necessários para que sua aplicação seja reproduzida com sucesso.
+
+Instruções de instalação:
+
+	1 - Clonar o repositório e dar checkout no branch challenge-kim-delevati
+	2 - Navegar até a pasta backend/ através de alguma ferramenta de linha de comando
+	3 - Executar o comando npm install
+	4 - Renomear o arquivo .env.example para .env e editar o secret
+	5 - Na pasta config/ , renomear o arquivo config.json.example para config.json e editar as variáveis de acesso ao banco de dados
+	6 - Executar o comando: npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all
+
+**Para execução local:**
+
+	7 - Executar o comando: serverless offline start --skipCacheInvalidation
+
+A API estará disponível para acesso no endereço `http://localhost:3000/`
+
+**Para execução remota:** (requer credenciais AWS configuradas no sistema)
+
+	7 - Executar o comando: serverless deploy
+O comando retornará o endereço da API provisionada no API Gateway.
+<br><br>
+O arquivo de coleção Postman está disponível na pasta `postman_collection/`
 
 ## Casos de uso
 

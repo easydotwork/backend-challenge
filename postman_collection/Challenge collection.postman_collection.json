@@ -1,0 +1,216 @@
+{
+	"info": {
+		"_postman_id": "aeb6d8d1-1f7f-4769-a7a7-017d18b19cac",
+		"name": "Challenge collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"kim delev\",\r\n    \"email\": \"kim.delevati@teste32.com\",\r\n    \"document\": \"01736464094\",\r\n    \"jobId\" : 2,\r\n    \"addresses\": [\r\n        {\r\n            \"addressTypeId\" : \"1\",\r\n            \"address\" : \"Rua sansao alves dos santos\"\r\n        }        \r\n    ],\r\n    \"phonenumbers\": [\r\n        {\r\n            \"phoneTypeId\" : \"1\",\r\n            \"phoneNumber\" : \"51998570417\"\r\n        }        \r\n    ],\r\n    \"socialnetworks\": [\r\n        {\r\n            \"socialNetworkTypeId\" : \"1\",\r\n            \"url\" : \"fb.com/kimdelevati\"\r\n        }        \r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/users/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"kim.delevati@teste.com\",\r\n    \"password\": \"h4AlUZQ1iW\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/auth/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"auth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletes user",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTk4Njc3MjY5LCJleHAiOjE1OTg2ODA4Njl9.q4E3zUxznboofe1Bv0T-epKVtq_IlBKkuIpVN-X-Qpg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/users/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTk4NzY2NTQyLCJleHAiOjE1OTg3NzAxNDJ9.wYQu4DPZGmDESlS5prHYIWEb5useI8t1vVATkI-nlz8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/users",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTk4ODI0ODM0LCJleHAiOjE1OTg4Mjg0MzR9.FrakNJNyI5YuohjZL5FlR_glfV9llnb7ZeOEzt0Q458",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"kim delevat\",    \r\n    \"document\": \"01736454094\",\r\n    \"jobId\" : 3,\r\n    \"addresses\": [\r\n        {\r\n            \"addressTypeId\" : \"1\",\r\n            \"address\" : \"Rua sansão alves dos santos\"\r\n        }        \r\n    ],\r\n    \"phonenumbers\": [\r\n        {\r\n            \"phoneTypeId\" : \"1\",\r\n            \"phoneNumber\" : \"51998570416\"\r\n        }        \r\n    ],\r\n    \"socialnetworks\": [\r\n        {\r\n            \"socialNetworkTypeId\" : \"2\",\r\n            \"url\" : \"fb.com/kimdelevati\"\r\n        }        \r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/users",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Social Network Types",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/socialnetworktypes",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"socialnetworktypes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Job Types",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/jobtypes",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"jobtypes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Address Types",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/addresstypes",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"addresstypes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Phone Types",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/phonetypes",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"phonetypes"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
