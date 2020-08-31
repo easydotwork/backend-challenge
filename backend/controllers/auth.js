@@ -11,7 +11,7 @@ module.exports = app => {
 
         //h4AlUZQ1iW
 
-        const user = await await models.User.findOne({ where: { email: req.body.email }, attributes: ['id', 'password'] });
+        const user = await models.User.findOne({ where: { email: req.body.email }, attributes: ['id', 'password'] });
 
         if ( (user !== null) && (bcrypt.compareSync(req.body.password, user.password)) ) {
 
