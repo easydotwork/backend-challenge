@@ -74,7 +74,7 @@ Para esta aplicação consideramos um diferencial o uso de uma infraestrutura se
 - Criar database local com nome: db_easywork
 - Migration das tabelas será feito após subir o backend pela primeira vez.
 
-## Casos de uso
+## Instruções para uso
 
 >API (construção)
 - Feita com FW baseado em ExpressJS
