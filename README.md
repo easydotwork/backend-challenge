@@ -66,6 +66,8 @@ Para esta aplicação consideramos um diferencial o uso de uma infraestrutura se
 >BackEnd
 - cd ./backend
 - npm install
+- Necessário criar um database com nome: db_easywork
+- migration das tabelas será realizado quando subir o backend pela primeira vez.
 
 ## Casos de uso
 
