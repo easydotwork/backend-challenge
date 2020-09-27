@@ -69,6 +69,11 @@ Para esta aplicação consideramos um diferencial o uso de uma infraestrutura se
 - Necessário criar um database com nome: db_easywork
 - migration das tabelas será realizado quando subir o backend pela primeira vez.
 
+>Database
+- PostgreSQL
+- Criar database local com nome: db_easywork
+- Migration das tabelas será feito após subir o backend pela primeira vez.
+
 ## Casos de uso
 
 >API (construção)
