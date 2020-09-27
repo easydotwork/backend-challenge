@@ -59,11 +59,36 @@ Para esta aplicação consideramos um diferencial o uso de uma infraestrutura se
 
 ## Instalação
 
->Utilize este espaço para nos instruir de forma intuitiva a instalar recursos e executar procedimentos necessários para que sua aplicação seja reproduzida com sucesso.
+>FrontEnd
+- cd ./frontend
+- npm install
+
+>BackEnd
+- cd ./backend
+- npm install
 
 ## Casos de uso
 
->Utilize este espaço para nos apresentar sua aplicação, mostre casos de uso reais que possam nos ajudar a simular cenários e obter a melhor experiência com seu produto.
+>API (construção)
+- Feita com FW baseado em ExpressJS
+- JWT
+- Proteção dos endpoints
+- Autenticação
+
+>API
+- Após instalação
+- execute npm start
+- Acesso http://localhost:3000
+- Terás uma tela da API como essa: [Imagem API](https://ibb.co/gy4Jp13)
+- Para executar os testes, executar npm test
+- Link para acesso aos endpoints da API > https://documenter.getpostman.com/view/94139/TVKHUFbD
+
+>FrontEnd
+- Após instalação
+- execute npm start
+- Abrirá um nova página web como essa: [Imagem Front](https://ibb.co/0tvjNYY)
+- http://localhost:4200/
+- Após o primeiro registro, já será possível se logar na aplicação.
 
 ## Instruções de contribuição
 

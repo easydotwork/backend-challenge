@@ -1,0 +1,39 @@
+﻿<div class="wrapper fadeInDown">
+    <div id="formContent" class="colorBackground">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img class="logo" src="../../assets/logo.svg" id="icon" alt="Icon EasyWork" />
+      </div>
+  
+      <!-- Login Form -->
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group email">
+                <input placeholder="Email" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && fields.username.errors }" />
+                <div *ngIf="submitted && fields.username.errors" class="invalid-feedback">
+                    <div *ngIf="fields.username.errors.required">Email is required</div>
+                </div>
+            </div>
+            <div class="form-group password">
+                <input placeholder="Password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fields.password.errors }" />
+                <div *ngIf="submitted && fields.password.errors" class="invalid-feedback">
+                    <div *ngIf="fields.password.errors.required">Password is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Login
+                </button>
+                <a routerLink="../register" class="btn btn-link">Register</a>
+            </div>
+        </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+  
+    </div>
+  </div> 
