@@ -1,0 +1,42 @@
+﻿<h1>Edit User</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="email">Email</label>
+            <input  type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && fields.email.errors }" />
+            <div *ngIf="submitted && fields.email.errors" class="invalid-feedback">
+                <div *ngIf="fields.email.errors.required">Email is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="Name">Name</label>
+            <input  type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && fields.name.errors }" />
+            <div *ngIf="submitted && fields.name.errors" class="invalid-feedback">
+                <div *ngIf="fields.name.errors.required">Name is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="Address">Address</label>
+            <input  type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && fields.address.errors }" />
+            <div *ngIf="submitted && fields.address.errors" class="invalid-feedback">
+                <div *ngIf="fields.address.errors.required">Address is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="Phone">Phone</label>
+            <input  type="text" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && fields.phone.errors }" />
+            <div *ngIf="submitted && fields.phone.errors" class="invalid-feedback">
+                <div *ngIf="fields.phone.errors.required">Phone is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+        <a routerLink="/users" class="btn btn-link">Cancel</a>
+    </div>
+</form>

@@ -1,0 +1,111 @@
+﻿<div class="card">
+    <h4 class="card-header">Register</h4>
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input [(ngModel)]="objRegister.email" type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && fields.email.errors }" />
+                <div *ngIf="submitted && fields.email.errors" class="invalid-feedback">
+                    <div *ngIf="fields.email.errors.required">Email is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input [(ngModel)]="objRegister.password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fields.password.errors }" />
+                <div *ngIf="submitted && fields.password.errors" class="invalid-feedback">
+                    <div *ngIf="fields.password.errors.required">Password is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="passwordAgain">Password Again</label>
+                <input [(ngModel)]="passwordAgain" type="password" formControlName="passwordAgain" class="form-control" [ngClass]="{ 'is-invalid': objRegister.password != passwordAgain }" />
+                <div *ngIf="objRegister.password != passwordAgain" class="invalid-feedback">
+                    <div>Password not match</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <input [(ngModel)]="objRegister.name" type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && fields.name.errors }" />
+                <div *ngIf="submitted && fields.name.errors" class="invalid-feedback">
+                    <div *ngIf="fields.name.errors.required">Name is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="cpf_cnpj">CPF or CNPJ</label>
+                <input class="form-control" type="text" mask="000.000.000-00||00.000.000/0000-00" formControlName="cpf_cnpj"
+                [(ngModel)]="cpf_cnpj" [ngClass]="{ 'is-invalid': submitted && fields.cpf_cnpj.errors }" required>
+                <div *ngIf="submitted && fields.cpf_cnpj.errors" class="invalid-feedback">
+                    <div *ngIf="fields.cpf_cnpj.errors.required">CPF or CNPJ is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Address">Address</label>
+                <input [(ngModel)]="objRegister.address" type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && fields.address.errors }" />
+                <div *ngIf="submitted && fields.address.errors" class="invalid-feedback">
+                    <div *ngIf="fields.address.errors.required">Address is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Phone">Phone</label>
+                <div class="form-check">
+                    <input [(ngModel)]="radioSelected" formControlName="radioPhones" type="radio" class="form-check-input" id="home" name="radioPhones" value="Home">
+                    <label class="form-check-label" for="radioPhones">Home</label>
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="radioSelected" formControlName="radioPhones" type="radio" class="form-check-input" id="mobile" name="radioPhones" value="Mobile" checked>
+                    <label class="form-check-label" for="radioMobile">Mobile</label>
+                </div>
+                <div class="form-check">
+                    <input [(ngModel)]="radioSelected" formControlName="radioPhones" type="radio" class="form-check-input" id="wp" name="radioPhones" value="WhatsApp">
+                    <label class="form-check-label" for="radioWp">WhatsApp</label>
+                </div>
+                <input [(ngModel)]="objRegister.phone" type="text" mask="(00) 00000-0000" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && fields.phone.errors }" />
+                <div *ngIf="submitted && fields.phone.errors" class="invalid-feedback">
+                    <div *ngIf="fields.phone.errors.required">Phone is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="role">Role</label>
+                <ng-select formControlName="role" [(ngModel)]="objRegister.role" bindLabel="label" class="custom" [items]="arrayRoles"></ng-select>
+            </div>
+            <div class="form-group">
+                <label for="social">Social Media</label>
+                <ng-select formControlName="socialMedia" [(ngModel)]="objRegister.socialMedia" class="custom" [items]="arraySocialMedia"></ng-select>
+            </div>
+            <div class="form-group">
+                    <label for="avatar">Avatar</label>
+                    <div *ngIf="!croopedImg" styles="position: relative;top: 42px;margin-bottom: 53px;right: 49px;">
+                        <input formControlName="avatar" type="file" (change)="fileChangeEvent($event)" />
+                    </div>
+                    
+                    <div *ngIf="!croopedImg">
+                        <image-cropper
+                            [imageChangedEvent]="imageChangedEvent"
+                            [maintainAspectRatio]="true"
+                            [aspectRatio]="4 / 3"
+                            format="png"
+                            [resizeToWidth]="128"
+                            [resizeToHeight]="128"
+                            (imageCropped)="imageCropped($event)"
+                        ></image-cropper>
+                    </div>
+
+                    <div *ngIf="btnSaveCropp" class="form-group">
+                        <button (click)="saveCroppedImg()" class="btn btn-primary">Save</button>
+                    </div>
+
+                    <img *ngIf="croopedImg" [src]="croppedImage" />
+                    <div *ngIf="!objRegister.avatar || objRegister.avatar == ''" class="invalid-feedback">
+                        <div>Avatar is required</div>
+                    </div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Register
+                </button>
+                <a routerLink="../login" class="btn btn-link">Cancel</a>
+            </div>  
+        </form>
+    </div>
+</div>
